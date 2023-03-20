@@ -9,18 +9,34 @@ part 'user_list_state.dart';
 
 class UserListBloc extends Bloc<UserListEvent, UserListState> {
   late UserBussiness _userBussiness;
+  late bool _isListView;
 
-  UserListBloc(UserService userService) : super(UserListInitial()) {
+  UserListBloc(
+    UserService userService,
+  ) : super(UserListInitial()) {
     _userBussiness = UserBussiness(userService);
+    _isListView = true;
     on<FetchUserListEvent>((event, emit) async {
       emit(UserListLoading());
       await _userBussiness.initListUser();
-      emit(UserListLoaded(_userBussiness.listUser));
     });
     on<LoadMoreUserListEvent>((event, emit) async {
       emit(UserListLoading());
       await _userBussiness.loadMore();
-      emit(UserListLoaded(_userBussiness.listUser));
+      await updateUi(emit);
     });
+    on<ViewModeListUserEvent>((event, emit) async {
+      emit(UserListLoading());
+      _isListView = event.isListView;
+      await updateUi(emit);
+    });
+  }
+
+  Future<void> updateUi(emit) async {
+    if (_isListView) {
+      emit(UserListViewLoaded(_userBussiness.listUser));
+      return;
+    }
+    emit(UserGridViewLoaded(_userBussiness.listUser));
   }
 }

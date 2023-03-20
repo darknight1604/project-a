@@ -9,9 +9,16 @@ class UserListInitial extends UserListState {}
 
 class UserListLoading extends UserListState {}
 
-class UserListLoaded extends UserListState {
+class UserGridViewLoaded extends UserListState {
   final List<User> listUser;
-  UserListLoaded(this.listUser);
+  UserGridViewLoaded(this.listUser);
+  @override
+  List<Object?> get props => [listUser];
+}
+
+class UserListViewLoaded extends UserListState {
+  final List<User> listUser;
+  UserListViewLoaded(this.listUser);
   @override
   List<Object?> get props => [listUser];
 }
