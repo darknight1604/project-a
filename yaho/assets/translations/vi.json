@@ -4,5 +4,7 @@
     "email": "Email",
     "avatar":"Ảnh đại diện",
     "notFound":"404 không tìm thấy",
-    "loadMore":"Xem thêm"
+    "loadMore":"Xem thêm",
+    "listView":"List view",
+    "gridView":"Grid view"
 }

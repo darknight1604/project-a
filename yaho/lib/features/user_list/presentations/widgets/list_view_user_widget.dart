@@ -6,6 +6,8 @@ import '../../../../core/widgets/image_widget.dart';
 import '../../domains/models/user_response.dart';
 import 'package:yaho/core/extensions/text_style_extension.dart';
 
+import 'loading_more_widget.dart';
+
 class ListViewUserWidget extends StatelessWidget {
   final List<User> listUser;
   const ListViewUserWidget({
@@ -16,16 +18,15 @@ class ListViewUserWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      // padding: const EdgeInsets.symmetric(
-      //   vertical: 10.0,
-      //   horizontal: 30.0,
-      // ),
       itemCount: listUser.length,
       separatorBuilder: (context, index) => const SizedBox(
         height: 10.0,
       ),
       itemBuilder: (context, index) {
         User user = listUser[index];
+        if (user.isFake) {
+          return const LoadingMoreWidget();
+        }
         return _UserItemWidget(
           user: user,
         );

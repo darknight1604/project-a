@@ -4,5 +4,7 @@
     "email": "Email",
     "avatar":"Avatar",
     "notFound":"404 not found",
-    "loadMore":"Load more"
+    "loadMore":"Load more",
+    "listView":"List view",
+    "gridView":"Grid view"
 }

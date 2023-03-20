@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yaho/core/extensions/text_style_extension.dart';
+import 'package:yaho/features/user_list/presentations/widgets/loading_more_widget.dart';
 
 import '../../../../core/widgets/image_widget.dart';
 import '../../domains/models/user_response.dart';
@@ -18,13 +19,16 @@ class GridViewUserWidget extends StatelessWidget {
       childAspectRatio: 1.25,
       crossAxisSpacing: 8.0,
       mainAxisSpacing: 8.0,
-      children: listUser
-          .map(
-            (e) => _UserItemWidget(
-              user: e,
-            ),
-          )
-          .toList(),
+      children: listUser.map(
+        (e) {
+          if (e.isFake) {
+            return const LoadingMoreWidget();
+          }
+          return _UserItemWidget(
+            user: e,
+          );
+        },
+      ).toList(),
     );
   }
 }

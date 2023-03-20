@@ -14,12 +14,17 @@ class UserBussiness {
 
   Future<void> initListUser() async {
     final result = await userService.getListUser(UserRequest(page));
+    if (result.isEmpty) return;
     _listUser.addAll(result);
+    _listUser.add(User.fake());
   }
 
   Future<void> loadMore() async {
     page++;
     final result = await userService.getListUser(UserRequest(page));
+    if (result.isEmpty) return;
+    _listUser.removeWhere((element) => element.isFake);
     _listUser.addAll(result);
+    _listUser.add(User.fake());
   }
 }

@@ -70,6 +70,9 @@ class User extends Equatable {
         lastName: json['last_name'],
         avatar: json['avatar'],
       );
+  factory User.fake() => const User(
+        id: -1,
+      );
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -104,6 +107,8 @@ class User extends Equatable {
     }
     return sb.toString();
   }
+
+  bool get isFake => id == -1;
 }
 
 // class Support {

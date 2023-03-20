@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'features/not_found/presentations/not_found_screen.dart';
 import 'features/user_list/presentations/user_list_screen.dart';
 
 class RouteGenerate {
@@ -18,7 +19,7 @@ class RouteGenerate {
       default:
         return MaterialPageRoute(
           builder: (context) {
-            return const UserListScreen();
+            return const NotFoundScreen();
           },
         );
     }
