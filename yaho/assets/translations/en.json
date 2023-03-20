@@ -3,5 +3,6 @@
     "fullname": "Fullname",
     "email": "Email",
     "avatar":"Avatar",
-    "notFound":"404 not found"
+    "notFound":"404 not found",
+    "loadMore":"Load more"
 }

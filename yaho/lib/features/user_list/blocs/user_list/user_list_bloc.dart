@@ -38,6 +38,8 @@ class UserListBloc extends Bloc<UserListEvent, UserListState> {
       emit(UserListViewLoaded(_userBussiness.listUser));
       return;
     }
-    emit(UserGridViewLoaded(_userBussiness.listUser));
+    final newState = UserGridViewLoaded(_userBussiness.listUser);
+    final currentState = state;
+    emit(newState);
   }
 }

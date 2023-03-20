@@ -6,7 +6,7 @@ import '../services/user_service.dart';
 class UserBussiness {
   final UserService userService;
   final List<User> _listUser = [];
-  int page = 0;
+  int page = 1;
 
   UserBussiness(this.userService);
 

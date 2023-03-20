@@ -1,7 +1,9 @@
 import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yaho/gen/locale_keys.g.dart';
 
 import '../../../core/widgets/loading_widget.dart';
 import '../blocs/user_list/user_list_bloc.dart';
@@ -29,10 +31,12 @@ class UserListScreen extends StatelessWidget {
             horizontal: 30.0,
           ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               const _SwitchModeWidget(),
               Expanded(
                 child: BlocBuilder<UserListBloc, UserListState>(
+                  buildWhen: (previous, current) => current is! UserListLoading,
                   builder: (context, state) {
                     if (state is UserListViewLoaded) {
                       return ListViewUserWidget(
@@ -48,6 +52,15 @@ class UserListScreen extends StatelessWidget {
                   },
                 ),
               ),
+              Builder(builder: (context) {
+                return TextButton(
+                  onPressed: () {
+                    BlocProvider.of<UserListBloc>(context)
+                        .add(LoadMoreUserListEvent());
+                  },
+                  child: Text(LocaleKeys.loadMore.tr()),
+                );
+              }),
             ],
           ),
         ),

@@ -1,10 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:yaho/gen/locale_keys.g.dart';
+import 'package:yaho/core/extensions/text_style_extension.dart';
 
 import '../../../../core/widgets/image_widget.dart';
 import '../../domains/models/user_response.dart';
-import 'package:yaho/core/extensions/text_style_extension.dart';
 
 class GridViewUserWidget extends StatelessWidget {
   final List<User> listUser;
@@ -21,9 +19,11 @@ class GridViewUserWidget extends StatelessWidget {
       crossAxisSpacing: 8.0,
       mainAxisSpacing: 8.0,
       children: listUser
-          .map((e) => _UserItemWidget(
-                user: e,
-              ))
+          .map(
+            (e) => _UserItemWidget(
+              user: e,
+            ),
+          )
           .toList(),
     );
   }
