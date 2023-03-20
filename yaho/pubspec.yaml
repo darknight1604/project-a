@@ -58,7 +58,9 @@ dependencies:
   # https://pub.dev/packages/cached_network_image
   # A flutter library to show images from the internet and 
   # keep them in the cache directory.
-  cached_network_image: ^3.2.3
+  cached_network_image: ^3.2.3  
+  
+  # https://pub.dev/packages/easy_localization
   easy_localization: ^3.0.1
 
 dev_dependencies:

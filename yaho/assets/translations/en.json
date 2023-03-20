@@ -1,3 +1,7 @@
 {
-    "helloWorld": "Xin chao"
+    "helloWorld": "Xin chao",
+    "fullname": "Fullname",
+    "email": "Email",
+    "avatar":"Avatar",
+    "notFound":"404 not found"
 }

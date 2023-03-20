@@ -1,18 +1,26 @@
-import 'dart:developer';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yaho/core/config_reader.dart';
 import 'package:yaho/router.dart';
 
 import 'core/app_config.dart';
-import 'features/user_list/blocs/user_list/user_list_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await EasyLocalization.ensureInitialized();
   final configs = await ConfigReader.readConfig();
   AppConfig(configs: configs);
-  runApp(const MyApp());
+  runApp(
+    EasyLocalization(
+      path: 'assets/translations',
+      supportedLocales: const [
+        Locale('vi'),
+        Locale('en'),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -26,6 +34,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       initialRoute: RouteGenerate.userListScreen,
       onGenerateRoute: RouteGenerate.generateRoute,
     );

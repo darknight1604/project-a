@@ -89,6 +89,21 @@ class User extends Equatable {
         id,
         email,
       ];
+
+  String get fullname {
+    final sb = StringBuffer();
+    if (firstName == null && lastName == null) {
+      return sb.toString();
+    }
+    if (firstName?.isNotEmpty == true) {
+      sb.write(firstName!);
+      sb.write(' ');
+    }
+    if (lastName?.isNotEmpty == true) {
+      sb.write(lastName!);
+    }
+    return sb.toString();
+  }
 }
 
 // class Support {

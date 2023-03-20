@@ -15,19 +15,20 @@ class UserListBloc extends Bloc<UserListEvent, UserListState> {
     UserService userService,
   ) : super(UserListInitial()) {
     _userBussiness = UserBussiness(userService);
-    _isListView = true;
+    _isListView = false;
     on<FetchUserListEvent>((event, emit) async {
       emit(UserListLoading());
       await _userBussiness.initListUser();
+      await updateUi(emit);
     });
     on<LoadMoreUserListEvent>((event, emit) async {
       emit(UserListLoading());
       await _userBussiness.loadMore();
       await updateUi(emit);
     });
-    on<ViewModeListUserEvent>((event, emit) async {
+    on<SwitchModeListUserEvent>((event, emit) async {
       emit(UserListLoading());
-      _isListView = event.isListView;
+      _isListView = !_isListView;
       await updateUi(emit);
     });
   }

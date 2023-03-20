@@ -1,3 +1,7 @@
 {
-    "helloWorld": "Xin chao"
+    "helloWorld": "Xin chao",
+    "fullname": "Tên đầy đủ",
+    "email": "Email",
+    "avatar":"Ảnh đại diện",
+    "notFound":"404 không tìm thấy"
 }
