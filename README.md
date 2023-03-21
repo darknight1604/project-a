@@ -1,7 +1,7 @@
 # project-a
 ### Introduce
 
-- This project developed by Flutter 3.7.7
+- This project is developed by Flutter 3.7.7
 - Using bloC to manage State
 
 ### Evidences
