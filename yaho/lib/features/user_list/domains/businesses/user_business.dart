@@ -13,18 +13,28 @@ class UserBusiness {
   List<User> get listUser => _listUser;
 
   Future<void> initListUser() async {
-    final result = await userService.getListUser(UserRequest(page));
-    if (result.isEmpty) return;
-    _listUser.addAll(result);
+    final UserResponse? result =
+        await userService.getUserResponse(UserRequest(page));
+    if (result == null) return;
+    if (result.listUser.isEmpty) return;
+    _listUser.addAll(result.listUser);
     _listUser.add(User.fake());
   }
 
   Future<void> loadMore() async {
     page++;
-    final result = await userService.getListUser(UserRequest(page));
-    if (result.isEmpty) return;
+    final UserResponse? result =
+        await userService.getUserResponse(UserRequest(page));
+    if (result == null) return;
+
+    if (result.listUser.isEmpty) {
+      return;
+    }
     _listUser.removeWhere((element) => element.isFake);
-    _listUser.addAll(result);
-    _listUser.add(User.fake());
+    _listUser.addAll(result.listUser);
+    int currentTotal = _listUser.length;
+    if (currentTotal < (result.total ?? 0)) {
+      _listUser.add(User.fake());
+    }
   }
 }

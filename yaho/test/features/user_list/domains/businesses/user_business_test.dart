@@ -33,10 +33,10 @@ void main() async {
       expect(userBussiness.listUser.last.isFake, true);
       await userBussiness.loadMore();
       expect(listUser.where((e) => !e.isFake).length, 12);
-      expect(userBussiness.listUser.last.isFake, true);
+      expect(userBussiness.listUser.last.isFake, false);
       expect(
         userBussiness.listUser.where((element) => element.isFake).length,
-        1,
+        0,
       );
     });
   });

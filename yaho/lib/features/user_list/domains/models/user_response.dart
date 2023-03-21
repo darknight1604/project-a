@@ -31,6 +31,10 @@ class UserResponse {
     // support =
     //     json['support'] != null ? new Support.fromJson(json['support']) : null;
   }
+  List<User> get listUser {
+    if (data == null || data?.isEmpty == true) return [];
+    return data ?? [];
+  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

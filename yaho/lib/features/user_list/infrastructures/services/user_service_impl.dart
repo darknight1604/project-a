@@ -6,11 +6,7 @@ class UserServiceImpl extends UserService {
   final UserRepository _repository = UserRepository();
 
   @override
-  Future<List<User>> getListUser(userRequest) async {
-    UserResponse? userResponse = await _repository.getListUser(userRequest);
-    if (userResponse == null) {
-      return [];
-    }
-    return userResponse.data ?? [];
+  Future<UserResponse?> getUserResponse(userRequest) async {
+    return await _repository.getListUser(userRequest);
   }
 }
