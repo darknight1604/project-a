@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yaho/core/app_config.dart';
 import 'package:yaho/core/config_reader.dart';
-import 'package:yaho/features/user_list/domains/bussinesses/user_bussiness.dart';
+import 'package:yaho/features/user_list/domains/businesses/user_business.dart';
 import 'package:yaho/features/user_list/infrastructures/services/user_service_impl.dart';
 
 void main() async {
@@ -18,15 +18,15 @@ void main() async {
       final configs = await ConfigReader.readConfig();
       AppConfig(configs: configs);
     });
-    test('UserBussiness-initListUser', () async {
-      final userBussiness = UserBussiness(UserServiceImpl());
+    test('UserBusiness-initListUser', () async {
+      final userBussiness = UserBusiness(UserServiceImpl());
       expect(userBussiness.listUser, []);
       await userBussiness.initListUser();
       expect(userBussiness.listUser.isNotEmpty, true);
       expect(userBussiness.listUser.last.isFake, true);
     });
-    test('UserBussiness-loadMore', () async {
-      final userBussiness = UserBussiness(UserServiceImpl());
+    test('UserBusiness-loadMore', () async {
+      final userBussiness = UserBusiness(UserServiceImpl());
       await userBussiness.initListUser();
       final listUser = userBussiness.listUser;
       expect(listUser.where((e) => !e.isFake).length, 6);
